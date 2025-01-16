@@ -1,9 +1,22 @@
 package com.example.dailypulse
 
 import platform.UIKit.UIDevice
+import platform.UIKit.UIScreen
+import platform.Foundation.NSLog
 
-class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+actual class Platform() {
+    actual val osName: String
+        get() = UIDevice.currentDevice.systemName
+    actual val osVersion: String
+        get() = UIDevice.currentDevice.systemVersion
+    actual val deviceModel: String
+        get() = UIDevice.currentDevice.model
+    actual val density: Int
+        get() = UIScreen.mainScreen.scale.toInt()
+
+    actual fun logSystemInfo() {
+        NSLog(
+            "($osName, $osVersion, $deviceModel, $density)"
+        )
+    }
 }
-
-actual fun getPlatform(): Platform = IOSPlatform()
