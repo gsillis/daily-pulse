@@ -64,4 +64,5 @@ android {
 }
 dependencies {
     implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.android)
 }
